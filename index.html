@@ -1,0 +1,36 @@
+<html>
+    <head>
+        
+        <title>Calendar</title>
+        <link rel="stylesheet" media="screen, print, handheld" type="text/css" href="calendar.css" />
+        <script type="text/javascript" src="calendar.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular.min.js"></script>
+		<script src="pouchdb-5.1.0.min.js"></script>
+		<!-- <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'> -->
+    </head>
+    <body>
+	
+		<div ng-app="myApp" ng-controller="SelectCtrl">
+		  <table>
+			<script>calendar();</script>
+		  </table>
+		<div>
+	
+		<button onclick="addtodatabase();">Add to Database</button>
+		<button onclick="showTodos();">Display Weather</button>
+
+        <script>
+		
+		var app = angular.module('myApp', []);
+		app.controller('SelectCtrl', function($scope, $http) {
+		$http.get("https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(2211027)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=")
+		.success(function(response) {$scope.result = response.query;});
+		});
+		
+
+	
+		
+        </script>
+		
+		
+	
